@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace aspnetserver.Data
 {
-    internal sealed class Post
+    public sealed class Post
     {
         [Key]
         public int PostId { get; set; }

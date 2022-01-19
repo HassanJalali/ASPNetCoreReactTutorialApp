@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace aspnetserver.Data
 {
-    internal sealed class AppDBContext: DbContext
+    public sealed class AppDBContext: DbContext
     {
         public DbSet<Post> Posts { get; set; }
 
@@ -23,7 +23,6 @@ namespace aspnetserver.Data
                 };
             }
             modelBuilder.Entity<Post>().HasData(PostsToSeed);
-
            
         }
 
