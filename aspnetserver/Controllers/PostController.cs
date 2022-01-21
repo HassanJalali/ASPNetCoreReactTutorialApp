@@ -24,9 +24,29 @@ namespace aspnetserver.Controllers
             var post = await PostRepository.GetPostByIdAsync(id);
             return post;
         }
+
+        [HttpPut]
+        [Route("CreatePost")]
+        public async Task<bool> CreatePost(Post CreatePost)
+        {
+            return await PostRepository.CreatePostAsync(CreatePost);
+        }
+
+        [HttpPut]
+        [Route("UpdatePost")]
+        public async Task<bool> UpdatePost(Post updatePost)
+        {
+            return await PostRepository.UpdatePostAsync(updatePost);
+        }
+
+        [HttpDelete]
+        [Route("DeletePost")]
+        public async Task<bool> DeletePost(int postId)
+        {
+         return await PostRepository.DeletePostByIdAsync(postId);       
+        }
     }
 }
-
 
 
 

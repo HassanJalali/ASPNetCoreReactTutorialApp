@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace aspnetserver.Data
 {
@@ -41,7 +42,7 @@ namespace aspnetserver.Data
             }
         }
 
-        public async static Task<bool> UpdatePostByIdAsync(Post postToUpdate)
+        public async static Task<bool> UpdatePostAsync(Post postToUpdate)
         {
             using (var db = new AppDBContext())
             {
