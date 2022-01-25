@@ -16,6 +16,7 @@ namespace aspnetserver
 {
     public class Startup
     {
+        //readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,7 +33,23 @@ namespace aspnetserver
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "aspnetserver", Version = "v1" });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "CORSPolicy",
+                                  builder =>
+                                  {
+                                      builder
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader()
+                                      .AllowAnyOrigin();
+                                  });
+            });
+
+
         }
+
+
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -43,7 +60,10 @@ namespace aspnetserver
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "aspnetserver v1"));
             }
 
+
             app.UseHttpsRedirection();
+
+            app.UseCors("CORSPolicy");
 
             app.UseRouting();
 
